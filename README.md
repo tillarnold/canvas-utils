@@ -5,3 +5,6 @@
 [![Coverage Status](https://coveralls.io/repos/tillarnold/canvas-utils/badge.png?branch=master)](https://coveralls.io/r/tillarnold/canvas-utils?branch=master)
 
 Utility functions for the HTML5 canvas
+
+## Release History
+* 2014-08-16   v0.0.1   Initial version. 
