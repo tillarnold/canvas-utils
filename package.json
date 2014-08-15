@@ -13,9 +13,8 @@
     "url": "https://github.com/tillarnold/canvas-utils"
   },
   "keywords": [
-    "array",
-    "fixed",
-    "2d"
+    "canvas",
+    "util",
   ],
   "author": "Till Arnold",
   "license": "MIT",
