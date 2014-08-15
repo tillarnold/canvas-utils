@@ -11,7 +11,7 @@ test('convertEventCoords', function (t) {
     height:200,
     offsetLeft: 833,
     offsetTop: 64 
-  })
+  });
 
   t.equal(coords.x,329);
   t.equal(coords.y,233);
