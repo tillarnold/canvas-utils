@@ -23,5 +23,8 @@
     "tape": "^2.14.0",
     "istanbul": "~0.3.0",
     "coveralls": "~2.11.1"
+  },
+  "dependencies": {
+    "inherits": "^2.0.1"
   }
 }
