@@ -2,17 +2,38 @@ var test = require('tape');
 var cutils = require('..');
 var convertEventCoords = cutils.convertEventCoords;
 
-test('convertEventCoords', function (t) {
+
+global.document = {};
+global.document.body = {};
+global.document.body.scrollLeft = 0;
+global.document.body.scrollTop = 0;
+
+
+global.window = {};
+global.window.getComputedStyle = function() {
+  return {
+    height: 400,
+    width: 200
+  };
+};
+
+test('convertEventCoords', function(t) {
   t.plan(2);
-  var coords = convertEventCoords({pageX:1042,pageY:212},{
-    offsetWidth: 254,
-    offsetHeight: 127,
+  var coords = convertEventCoords({
+    pageX: 500,
+    pageY: 500
+  }, {
     width: 400,
-    height:200,
-    offsetLeft: 833,
-    offsetTop: 64 
+    height: 200,
+    getBoundingClientRect: function() {
+      return {
+        left: 200,
+        top: 300
+      };
+    }
   });
 
-  t.equal(coords.x,329);
-  t.equal(coords.y,233);
+
+  t.equal(coords.x, 600);
+  t.equal(coords.y, 100);
 });
