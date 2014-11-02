@@ -37,3 +37,12 @@ test('convertEventCoords', function(t) {
   t.equal(coords.x, 600);
   t.equal(coords.y, 100);
 });
+
+test('degreesToRadians / radiansToDegrees', function(t) {
+  t.plan(4);
+
+  t.equal(cutils.degreesToRadians(58), 1.0122909661567112);
+  t.equal(cutils.degreesToRadians(555), 9.68657734856853);
+  t.equal(cutils.degreesToRadians(8), 0.13962634015954636);
+  t.equal(cutils.radiansToDegrees(cutils.degreesToRadians(8)), 8);
+});
