@@ -46,3 +46,5 @@ test('degreesToRadians / radiansToDegrees', function(t) {
   t.equal(cutils.degreesToRadians(8), 0.13962634015954636);
   t.equal(cutils.radiansToDegrees(cutils.degreesToRadians(8)), 8);
 });
+
+require('./canvasEventEmitterTest.js');
