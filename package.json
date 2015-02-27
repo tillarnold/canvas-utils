@@ -5,7 +5,9 @@
   "main": "index.js",
   "scripts": {
     "test": "npm run build && node es5-generated/test/test.js",
-    "test-coveralls": "istanbul cover es5-generated/test/test.js  && cat ./coverage/lcov.info | coveralls && rm -rf ./coverage",
+    "test-coveralls": "npm run istanbul && cat ./coverage/lcov.info | coveralls && rm -rf ./coverage",
+    "coverage": "rm -rf coverage && npm run istanbul && istanbul report html && serve coverage",
+    "istanbul": "npm run build && istanbul cover es5-generated/test/test.js",
     "jshint": "jshint src-es6/*",
     "lint": "eslint src-es6/*",
     "build": "rm -rf es5-generated && mkdir es5-generated  && babel src-es6 --out-dir es5-generated"
