@@ -82,7 +82,7 @@ The event object you get for all of these looks like this:
 | target         | the canvas the event belongs to (The `target` you passed into the constructor) |
 | event          | the original DOM event emitted on the `eventSource` |
 | button         | the button property from the `event` |
-| preventDefault | a function that called `preventDefault` on the `event` |
+| preventDefault | a function that calles `preventDefault` on the `event` |
 
 
 ```js
