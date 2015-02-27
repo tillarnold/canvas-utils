@@ -3,7 +3,7 @@
 [![Code Climate](https://codeclimate.com/github/tillarnold/canvas-utils/badges/gpa.svg)](https://codeclimate.com/github/tillarnold/canvas-utils)
 [![Build Status](https://travis-ci.org/tillarnold/canvas-utils.svg?branch=master)](https://travis-ci.org/tillarnold/canvas-utils)
 [![devDependency Status](https://david-dm.org/tillarnold/canvas-utils/dev-status.svg)](https://david-dm.org/tillarnold/canvas-utils#info=devDependencies)
-[![Coverage Status](https://coveralls.io/repos/tillarnold/canvas-utils/badge.png?branch=master)](https://coveralls.io/r/tillarnold/canvas-utils?branch=master)
+[![Coverage Status](https://coveralls.io/repos/tillarnold/canvas-utils/badge.svg?branch=master)](https://coveralls.io/r/tillarnold/canvas-utils?branch=master)
 
 
 > Utility functions for working with the HTML5 canvas
@@ -74,14 +74,14 @@ A `CanvasEventEmitter` is a standart node [EventEmitter](nodejs.org/api/events.h
 
 The event object you get for all of these looks like this:
 
-| Property       | Description                                                                                                  |
-|----------------|--------------------------------------------------------------------------------------------------------------|
-| x              | the x coordinate of the event relative to the canvas                       |
-| y              | the y coordinate of the event relative to the canvas                     |
-| target         | the canvas the event belongs to (The `target` you passed into the constructor)        |
-| event          | the original DOM event emitted on the `eventSource`      |
-| button         | the button property from the `event` (mousemove etc. don't have this property) |
-| preventDefault | a function that called `preventDefault` on the `event`                                                       |
+| Property       | Description |
+|----------------|-------------------------------------------------------|
+| x              | the x coordinate of the event relative to the canvas |
+| y              | the y coordinate of the event relative to the canvas |
+| target         | the canvas the event belongs to (The `target` you passed into the constructor |
+| event          | the original DOM event emitted on the `eventSource` |
+| button         | the button property from the `event` |
+| preventDefault | a function that called `preventDefault` on the `event` |
 
 
 ```js
