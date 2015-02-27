@@ -79,7 +79,7 @@ The event object you get for all of these looks like this:
 |----------------|-------------------------------------------------------|
 | x              | the x coordinate of the event relative to the canvas |
 | y              | the y coordinate of the event relative to the canvas |
-| target         | the canvas the event belongs to (The `target` you passed into the constructor |
+| target         | the canvas the event belongs to (The `target` you passed into the constructor) |
 | event          | the original DOM event emitted on the `eventSource` |
 | button         | the button property from the `event` |
 | preventDefault | a function that called `preventDefault` on the `event` |
