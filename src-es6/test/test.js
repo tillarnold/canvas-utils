@@ -1,44 +1,37 @@
-let test = require('tape'),
-    cutils = require('..'),
-    { convertEventCoords } = cutils;
+let test = require('tape')
+  , cutils = require('..')
+  , { convertEventCoords } = cutils;
 
 
-global.document = {};
-global.document.body = {};
-global.document.body.scrollLeft = 0;
-global.document.body.scrollTop = 0;
-
-
-global.window = {};
-global.window.getComputedStyle = function() {
-  return {
-    height: 400,
-    width: 200
-  };
+//set up global scope
+global.document = {
+  body: { scrollLeft: 0
+        , scrollTop: 0
+        }
 };
 
-test('convertEventCoords', (t) => {
-  t.plan(2);
-  var coords = convertEventCoords({
-    pageX: 500,
-    pageY: 500
-  }, {
-    width: 400,
-    height: 200,
-    getBoundingClientRect: function() {
-      return {
-        left: 200,
-        top: 300
-      };
-    }
-  });
+global.window = {
+  getComputedStyle: () => ({ height: 400
+                            , width: 200
+                            })
+};
 
+test('convertEventCoords', t => {
+  t.plan(2);
+  let event = { pageX: 500
+              , pageY: 500
+              }
+    , element = { width: 400
+                , height: 200
+                , getBoundingClientRect: () => ({left: 200, top: 300})
+                }
+    , coords = convertEventCoords(event, element);
 
   t.equal(coords.x, 600);
   t.equal(coords.y, 100);
 });
 
-test('degreesToRadians / radiansToDegrees', (t) => {
+test('degreesToRadians / radiansToDegrees', t => {
   t.plan(4);
 
   t.equal(cutils.degreesToRadians(58), 1.0122909661567112);

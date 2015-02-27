@@ -1,22 +1,20 @@
-'use strict';
-
 /**
  * @param {MouseEvent} e - DOM event
  * @param {HTMLCanvasElement} canvas - HTML canvas element
+ *
+ * @return {Object} the converted coordinate as object {x,y}
  */
-var convertEventCoords = function convertEventCoords(e, canvas) {
-  var rect = canvas.getBoundingClientRect();
-  var x = e.pageX - rect.left - document.body.scrollLeft;
-  var y = e.pageY - rect.top - document.body.scrollTop;
+let convertEventCoords = function convertEventCoords(e, canvas) {
+  let rect = canvas.getBoundingClientRect()
+    , x = e.pageX - rect.left - document.body.scrollLeft
+    , y = e.pageY - rect.top - document.body.scrollTop
+    , computed = window.getComputedStyle(canvas);
 
-  x *= canvas.width / parseInt(window.getComputedStyle(canvas).width, 10);
-  y *= canvas.height / parseInt(window.getComputedStyle(canvas).height, 10);
+  x *= canvas.width / parseInt(computed.width, 10);
+  y *= canvas.height / parseInt(computed.height, 10);
 
-  return {
-    x: x,
-    y: y
-  };
-};
+  return { x, y };
+},
 
 
 /**
@@ -24,12 +22,15 @@ var convertEventCoords = function convertEventCoords(e, canvas) {
  * @param {Number} x - coordinate
  * @param {Number} y - coordinate
  * @param {Number} r - Rotation in radians
+ *
+ * @return {CanvasRenderingContext2D} return the context passed in (for chaining)
  */
-var rotateContextAt = function rotateContextAt(ctx, x, y, r) {
+rotateContextAt = function rotateContextAt(ctx, x, y, r) {
   ctx.translate(x, y);
   ctx.rotate(r);
   ctx.translate(-1 * x, -1 * y);
-};
+  return ctx;
+},
 
 
 
@@ -37,21 +38,26 @@ var rotateContextAt = function rotateContextAt(ctx, x, y, r) {
  * Convert radians to degrees
  *
  * @param {Number} r - Angle in radians
+ *
+ * @return {Number} Angle in degree
  */
-var radiansToDegrees = function radiansToDegrees(r) {
+radiansToDegrees = function radiansToDegrees(r) {
   return r * 180 / Math.PI;
-};
+},
 
 /**
  * Convert degrees to radians
  *
  * @param {Number} d - Angle in degrees
+ *
+ * @return {Number} Angle in radian
  */
-var degreesToRadians = function degreesToRadians(d) {
+degreesToRadians = function degreesToRadians(d) {
   return d * Math.PI / 180;
 };
 
-module.exports.convertEventCoords = convertEventCoords;
-module.exports.rotateContextAt = rotateContextAt;
-module.exports.radiansToDegrees = radiansToDegrees;
-module.exports.degreesToRadians = degreesToRadians;
+module.exports = { convertEventCoords
+                 , rotateContextAt
+                 , radiansToDegrees
+                 , degreesToRadians
+                 };

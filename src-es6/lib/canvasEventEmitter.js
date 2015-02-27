@@ -1,5 +1,3 @@
-'use strict';
-
 let { EventEmitter } = require('events')
   , { convertEventCoords } = require('./canvas-utils.js');
 
