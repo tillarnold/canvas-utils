@@ -1,12 +1,12 @@
-var test = require('tape');
-var cutils = require('..');
-var CanvasEventEmitter = cutils.CanvasEventEmitter;
-var EventEmitter = require('events').EventEmitter;
+let test = require('tape'),
+    cutils = require('..'),
+    { createCanvasEventEmitter } = cutils,
+    { EventEmitter } = require('events');
 
 
 
-test('CanvasEventEmitter constructor', function(t) {
-  t.plan(3);
+test('CanvasEventEmitter constructor', (t) => {
+  t.plan(2);
   var canvas = {
     width: 400,
     height: 200,
@@ -21,20 +21,19 @@ test('CanvasEventEmitter constructor', function(t) {
   var ee = new EventEmitter();
   var source = {};
 
-  source.addEventListener = function(e, f) {
+  source.addEventListener = (e, f) => {
     ee.on(e, f);
   };
 
-  var cee = new CanvasEventEmitter(canvas, source);
-  t.equals(cee._target, canvas);
+  var cee = createCanvasEventEmitter(canvas, source);
 
-  cee.on('click', function(e) {
+  cee.on('click', (e) => {
     e.preventDefault();
     t.equals(e.button, 55);
   });
 
   ee.emit('click', {
-    preventDefault: function() {
+    preventDefault: () => {
       t.pass("preventDefault  called");
     },
     button: 55,

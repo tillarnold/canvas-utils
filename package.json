@@ -4,9 +4,11 @@
   "description": "Utility functions for the HTML5 canvas",
   "main": "index.js",
   "scripts": {
-    "test": "node test/test.js",
-    "test-coveralls": "istanbul cover test/test.js  && cat ./coverage/lcov.info | coveralls && rm -rf ./coverage",
-    "jshint": "jshint test/* lib/*"
+    "test": "npm run build && node es5-generated/test/test.js",
+    "test-coveralls": "istanbul cover es5-generated/test/test.js  && cat ./coverage/lcov.info | coveralls && rm -rf ./coverage",
+    "jshint": "jshint src-es6/*",
+    "lint": "eslint src-es6/*",
+    "build": "rm -rf es5-generated && mkdir es5-generated  && babel src-es6 --out-dir es5-generated"
   },
   "repository": {
     "type": "git",
@@ -22,9 +24,8 @@
     "jshint": "^2.5.3",
     "tape": "^3.0.0",
     "istanbul": "~0.3.0",
-    "coveralls": "~2.11.1"
-  },
-  "dependencies": {
-    "inherits": "^2.0.1"
+    "coveralls": "~2.11.1",
+    "eslint": "^0.15.1",
+    "babel": "^4.6.0"
   }
 }

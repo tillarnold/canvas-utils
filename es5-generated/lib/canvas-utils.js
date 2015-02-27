@@ -1,4 +1,4 @@
-'use strict';
+"use strict";
 
 /**
  * @param {MouseEvent} e - DOM event
@@ -9,15 +9,14 @@ var convertEventCoords = function convertEventCoords(e, canvas) {
   var x = e.pageX - rect.left - document.body.scrollLeft;
   var y = e.pageY - rect.top - document.body.scrollTop;
 
-  x *= canvas.width / parseInt(window.getComputedStyle(canvas).width);
-  y *= canvas.height / parseInt(window.getComputedStyle(canvas).height);
+  x *= canvas.width / parseInt(window.getComputedStyle(canvas).width, 10);
+  y *= canvas.height / parseInt(window.getComputedStyle(canvas).height, 10);
 
   return {
     x: x,
     y: y
   };
 };
-
 
 /**
  * @param {CanvasRenderingContext2D} ctx - The context that should be rotated
@@ -30,8 +29,6 @@ var rotateContextAt = function rotateContextAt(ctx, x, y, r) {
   ctx.rotate(r);
   ctx.translate(-1 * x, -1 * y);
 };
-
-
 
 /**
  * Convert radians to degrees
