@@ -16,16 +16,81 @@ var convertEventCoords = _require2.convertEventCoords;
 module.exports = function createCanvasEventEmitter(target) {
   var eventSource = arguments[1] === undefined ? window.document : arguments[1];
 
-  var isIn = false;
   var emitter = new EventEmitter();
-  initListeners();
-  return emitter;
+  var isIn = false,
+
+  /**
+   * Get the coordinates of an event relative to
+   * the target element
+   */
+  getCoords = function getCoords(event) {
+    return convertEventCoords(event, target);
+  },
+
+  /**
+   * Calculate if the coordinates (as given by getCoords)
+   * are on the canvas
+   */
+  areCoordsOnCanvas = function areCoordsOnCanvas(xy) {
+    var x = xy.x;
+    var y = xy.y;
+    var width = target.width;
+    var height = target.height;
+
+    if (x < 0 || y < 0) {
+      return false;
+    }
+
+    if (x > width || y > height) {
+      return false;
+    }
+
+    return true;
+  },
+
+  /**
+   * Wraps the DOM event into a CanvasEventEmitter event and emits it.
+   * @param {Event} event - the DOM event
+   * @param {Object} xy - the coordinate to emit
+   * @param {string} overrideType - optional defaults to event.type
+   */
+  emitCanvasEventRaw = function emitCanvasEventRaw(event, xy) {
+    var type = arguments[2] === undefined ? event.type : arguments[2];
+    return (function () {
+      var x = xy.x;
+      var y = xy.y;
+
+      emitter.emit(type, { x: x,
+        y: y,
+        target: target,
+        event: event,
+        button: event.button,
+        preventDefault: function () {
+          return event.preventDefault();
+        }
+      });
+    })();
+  },
+
+  /**
+   * Emits the given DOM Event if the coordinates are on the canvas
+   * @param {Event} event
+   */
+  emitCanvasEventIfOnCanvas = function emitCanvasEventIfOnCanvas(event, overrideType) {
+    var xy = getCoords(event);
+
+    if (!areCoordsOnCanvas(xy)) {
+      return;
+    }
+
+    emitCanvasEventRaw(event, xy, overrideType);
+  },
 
   /**
    * Attaches the DOM listeners
    * Should only be called once
    */
-  function initListeners() {
+  initListeners = function initListeners() {
     //add the basic listeners to the dom
     ["click", "mousedown", "mouseup"].forEach(function (eventType) {
       eventSource.addEventListener(eventType, emitCanvasEventIfOnCanvas);
@@ -60,72 +125,8 @@ module.exports = function createCanvasEventEmitter(target) {
       emitCanvasEventIfOnCanvas(event);
       emitCanvasEventIfOnCanvas(event, "click");
     });
-  }
+  };
 
-  /**
-   * Get the coordinates of an event relative to
-   * the target element
-   */
-  function getCoords(event) {
-    return convertEventCoords(event, target);
-  }
-
-  /**
-   * Calculate if the coordinates (as given by getCoords)
-   * are on the canvas
-   */
-  function areCoordsOnCanvas(xy) {
-    var x = xy.x;
-    var y = xy.y;
-    var width = target.width;
-    var height = target.height;
-
-    if (x < 0 || y < 0) {
-      return false;
-    }
-
-    if (x > width || y > height) {
-      return false;
-    }
-
-    return true;
-  }
-
-  /** 
-   * Wraps the DOM event into a CanvasEventEmitter event and emits it.
-   * @param {Event} event - the DOM event
-   * @param {Object} xy - the coordinate to emit
-   * @param {string} overrideType - optional defaults to event.type
-   */
-  function emitCanvasEventRaw(event, xy) {
-    var type = arguments[2] === undefined ? event.type : arguments[2];
-    return (function () {
-      var x = xy.x;
-      var y = xy.y;
-
-      emitter.emit(type, { x: x,
-        y: y,
-        target: target,
-        event: event,
-        button: event.button,
-        preventDefault: function () {
-          return event.preventDefault();
-        }
-      });
-    })();
-  }
-
-  /**
-   * Emits the given DOM Event if the coordinates are on the canvas
-   * @param {Event} event
-   */
-  function emitCanvasEventIfOnCanvas(event, overrideType) {
-    var xy = getCoords(event);
-
-    if (!areCoordsOnCanvas(xy)) {
-      return;
-    }
-
-    emitCanvasEventRaw(event, xy, overrideType);
-  }
+  initListeners();
+  return emitter;
 };

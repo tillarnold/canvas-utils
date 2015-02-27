@@ -1,12 +1,14 @@
 "use strict";
 
 var test = require("tape");
-var cutils = require("..");
-var createCanvasEventEmitter = cutils.createCanvasEventEmitter;
 
-var _require = require("events");
+var _require = require("..");
 
-var EventEmitter = _require.EventEmitter;
+var createCanvasEventEmitter = _require.createCanvasEventEmitter;
+
+var _require2 = require("events");
+
+var EventEmitter = _require2.EventEmitter;
 
 test("CanvasEventEmitter constructor", function (t) {
   t.plan(11);

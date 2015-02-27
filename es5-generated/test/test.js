@@ -1,8 +1,12 @@
 "use strict";
 
 var test = require("tape");
-var cutils = require("..");
-var convertEventCoords = cutils.convertEventCoords;
+
+var _require = require("..");
+
+var convertEventCoords = _require.convertEventCoords;
+var degreesToRadians = _require.degreesToRadians;
+var radiansToDegrees = _require.radiansToDegrees;
 
 //set up global scope
 global.document = {
@@ -39,10 +43,10 @@ test("convertEventCoords", function (t) {
 test("degreesToRadians / radiansToDegrees", function (t) {
   t.plan(4);
 
-  t.equal(cutils.degreesToRadians(58), 1.0122909661567112);
-  t.equal(cutils.degreesToRadians(555), 9.68657734856853);
-  t.equal(cutils.degreesToRadians(8), 0.13962634015954636);
-  t.equal(cutils.radiansToDegrees(cutils.degreesToRadians(8)), 8);
+  t.equal(degreesToRadians(58), 1.0122909661567112);
+  t.equal(degreesToRadians(555), 9.68657734856853);
+  t.equal(degreesToRadians(8), 0.13962634015954636);
+  t.equal(radiansToDegrees(degreesToRadians(8)), 8);
 });
 
 require("./canvasEventEmitterTest.js");

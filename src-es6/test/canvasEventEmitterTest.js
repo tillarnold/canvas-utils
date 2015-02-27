@@ -1,7 +1,6 @@
-let test = require('tape')
-  , cutils = require('..')
-  , { createCanvasEventEmitter } = cutils
-  , { EventEmitter } = require('events');
+const test = require('tape')
+    , { createCanvasEventEmitter } = require('..')
+    , { EventEmitter } = require('events');
 
 
 

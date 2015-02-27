@@ -8,8 +8,7 @@
     "test-coveralls": "npm run istanbul && cat ./coverage/lcov.info | coveralls && rm -rf ./coverage",
     "coverage": "rm -rf coverage && npm run istanbul && istanbul report html && serve coverage",
     "istanbul": "npm run build && istanbul cover es5-generated/test/test.js",
-    "jshint": "jshint src-es6/*",
-    "lint": "eslint src-es6/*",
+    "lint": "eslint src-es6/* && jshint src-es6/*",
     "build": "rm -rf es5-generated && mkdir es5-generated  && babel src-es6 --out-dir es5-generated"
   },
   "repository": {
@@ -28,6 +27,7 @@
     "istanbul": "~0.3.0",
     "coveralls": "~2.11.1",
     "eslint": "^0.15.1",
-    "babel": "^4.6.0"
+    "babel": "^4.6.0",
+    "babel-eslint": "^1.0.6"
   }
 }
