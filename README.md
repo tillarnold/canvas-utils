@@ -12,17 +12,17 @@
 
 ```js
 var canvasUtils = require('canvas-utils');
-``` 
+```
 ## canvasUtils.convertEventCoords(e, canvas)
 
 This function returns the coordinates of mouse events relative to a
-DOM element. For example a Canvas. 
+DOM element. For example a Canvas.
 
 `e` is a [MouseEvent](https://developer.mozilla.org/en-US/docs/Web/API/MouseEvent).
 
 `canvas` is a a DOM element.
 
-returns an Object with a `x` and `y` property representing the 
+returns an Object with a `x` and `y` property representing the
 pixel on the canvas that the event was fired on.
 
 ```js
@@ -45,8 +45,8 @@ Rotates a context around a point.
 `y` is the y-coordinate.
 
 `rotation` is the rotation in radians.
- 
 
+Returns the `ctx` passed in.
 ## canvasUtils.radiansToDegrees(radians)
 Converts `radians`to degrees.
 
@@ -57,10 +57,10 @@ Converts `degrees`to radians.
 # CanvasEventEmitter
 
 ```js
-var CanvasEventEmitter = require('canvas-utils').CanvasEventEmitter;
+var createCanvasEventEmitter = require('canvas-utils').createCanvasEventEmitter;
 ```
 
-## var cee = new CanvasEventEmitter(target, eventSource = window.document);
+## var cee = createCanvasEventEmitter(target, eventSource = window.document);
 
 `target` is the canvas for which events should be emitted.
 
@@ -70,7 +70,8 @@ var CanvasEventEmitter = require('canvas-utils').CanvasEventEmitter;
 
 ## Events
 
-A `CanvasEventEmitter` is a standart node [EventEmitter](nodejs.org/api/events.html#events_class_events_eventemitter). It emits the following events: `click`, `mousedown`, `mouseup`, `mousemove`, `mouseover`, `mouseout`, `contextmenu`
+A `CanvasEventEmitter` is a standart node [EventEmitter](nodejs.org/api/events.html#events_class_events_eventemitter).
+It emits the following events: `click`, `mousedown`, `mouseup`, `mousemove`, `mouseover`, `mouseout`, `contextmenu`
 
 The event object you get for all of these looks like this:
 
@@ -99,4 +100,4 @@ cee.on('click',function(e){
 * 2014-10-06   v0.3.0   Improve convertEventCoords.
 * 2014-09-26   v0.2.0   Add contextmenu event.
 * 2014-09-12   v0.1.0   Add CanvasEventEmitter.
-* 2014-08-16   v0.0.1   Initial version. 
+* 2014-08-16   v0.0.1   Initial version.
