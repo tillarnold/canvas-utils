@@ -1,6 +1,6 @@
 {
   "name": "canvas-utils",
-  "version": "0.5.0",
+  "version": "0.6.0",
   "description": "Utility functions for the HTML5 canvas",
   "main": "es5-generated/index.js",
   "scripts": {

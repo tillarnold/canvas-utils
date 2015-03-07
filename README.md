@@ -93,6 +93,7 @@ cee.on('click',function(e){
 ```
 
 ## Release History
+* 2015-03-07   v0.6.0   Is now written in ES6.
 * 2014-11-02   v0.5.0   Add `radiansToDegrees` and `degreesToRadians`.
 * 2014-10-13   v0.4.0   Add `mouseover` and `mouseout` events.
 * 2014-10-06   v0.3.2   Fix README typo.
