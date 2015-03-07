@@ -22,12 +22,12 @@
   "author": "Till Arnold",
   "license": "MIT",
   "devDependencies": {
-    "jshint": "^2.5.3",
-    "tape": "^3.0.0",
-    "istanbul": "~0.3.0",
+    "babel": "^4.7.1",
+    "babel-eslint": "^1.0.13",
     "coveralls": "~2.11.1",
     "eslint": "^0.15.1",
-    "babel": "^4.6.0",
-    "babel-eslint": "^1.0.6"
+    "istanbul": "^0.3.7",
+    "jshint": "^2.6.3",
+    "tape": "^3.5.0"
   }
 }
