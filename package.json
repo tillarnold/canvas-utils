@@ -1,12 +1,15 @@
 {
   "name": "canvas-utils",
-  "version": "0.5.0",
+  "version": "0.6.0",
   "description": "Utility functions for the HTML5 canvas",
-  "main": "index.js",
+  "main": "es5-generated/index.js",
   "scripts": {
-    "test": "node test/test.js",
-    "test-coveralls": "istanbul cover test/test.js  && cat ./coverage/lcov.info | coveralls && rm -rf ./coverage",
-    "jshint": "jshint test/* lib/*"
+    "test": "npm run build && node es5-generated/test/test.js",
+    "test-coveralls": "npm run istanbul && cat ./coverage/lcov.info | coveralls && rm -rf ./coverage",
+    "coverage": "rm -rf coverage && npm run istanbul && istanbul report html && serve coverage",
+    "istanbul": "npm run build && istanbul cover es5-generated/test/test.js",
+    "lint": "eslint src-es6/* && jshint src-es6/*",
+    "build": "rm -rf es5-generated && mkdir es5-generated  && babel src-es6 --out-dir es5-generated"
   },
   "repository": {
     "type": "git",
@@ -19,12 +22,12 @@
   "author": "Till Arnold",
   "license": "MIT",
   "devDependencies": {
-    "jshint": "^2.5.3",
-    "tape": "^3.0.0",
-    "istanbul": "~0.3.0",
-    "coveralls": "~2.11.1"
-  },
-  "dependencies": {
-    "inherits": "^2.0.1"
+    "babel": "^4.7.1",
+    "babel-eslint": "^1.0.13",
+    "coveralls": "~2.11.1",
+    "eslint": "^0.15.1",
+    "istanbul": "^0.3.7",
+    "jshint": "^2.6.3",
+    "tape": "^3.5.0"
   }
 }
