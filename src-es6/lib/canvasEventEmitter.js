@@ -1,14 +1,13 @@
-let { EventEmitter } = require('events')
-  , { convertEventCoords } = require('./canvas-utils.js');
-
+import { EventEmitter } from 'events'
+import { convertEventCoords } from './canvas-utils.js'
 
 /**
  * @constructor
  * @param {Element} target - the canvas that should emit the events
  * @param {Element} eventSource - defaults to window.document
  */
-module.exports = function createCanvasEventEmitter(target, eventSource = window.document) {
-  const emitter = new EventEmitter();
+const createCanvasEventEmitter = function createCanvasEventEmitter(target, eventSource = window.document) {
+  const emitter = new EventEmitter()
   let isIn = false,
 
 
@@ -19,7 +18,7 @@ module.exports = function createCanvasEventEmitter(target, eventSource = window.
    * the target element
    */
   getCoords = function getCoords(event) {
-    return convertEventCoords(event, target);
+    return convertEventCoords(event, target)
   },
 
   /**
@@ -28,17 +27,17 @@ module.exports = function createCanvasEventEmitter(target, eventSource = window.
    */
   areCoordsOnCanvas = function areCoordsOnCanvas(xy) {
     const { x, y } = xy
-        , { width, height } = target;
+        , { width, height } = target
 
     if (x < 0 || y < 0) {
-      return false;
+      return false
     }
 
     if (x > width || y > height) {
-      return false;
+      return false
     }
 
-    return true;
+    return true
   },
 
   /**
@@ -49,7 +48,7 @@ module.exports = function createCanvasEventEmitter(target, eventSource = window.
    */
   emitCanvasEventRaw = function emitCanvasEventRaw(event, xy, type = event.type) {
 
-    const { x, y } = xy;
+    const { x, y } = xy
 
     emitter.emit(type, { x
                        , y
@@ -57,7 +56,7 @@ module.exports = function createCanvasEventEmitter(target, eventSource = window.
                        , event
                        , button: event.button
                        , preventDefault: () => event.preventDefault()
-                       });
+                       })
   },
 
 
@@ -66,13 +65,13 @@ module.exports = function createCanvasEventEmitter(target, eventSource = window.
    * @param {Event} event
    */
   emitCanvasEventIfOnCanvas = function emitCanvasEventIfOnCanvas(event, overrideType) {
-    const xy = getCoords(event);
+    const xy = getCoords(event)
 
     if (!areCoordsOnCanvas(xy)) {
-      return;
+      return
     }
 
-    emitCanvasEventRaw(event, xy, overrideType);
+    emitCanvasEventRaw(event, xy, overrideType)
   },
 
   /**
@@ -82,8 +81,8 @@ module.exports = function createCanvasEventEmitter(target, eventSource = window.
   initListeners = function initListeners() {
     //add the basic listeners to the dom
     ['click', 'mousedown', 'mouseup'].forEach( eventType => {
-      eventSource.addEventListener(eventType, emitCanvasEventIfOnCanvas);
-    });
+      eventSource.addEventListener(eventType, emitCanvasEventIfOnCanvas)
+    })
 
 
     //Add listener for mousemove
@@ -91,34 +90,36 @@ module.exports = function createCanvasEventEmitter(target, eventSource = window.
     eventSource.addEventListener('mousemove', event => {
 
       const xy = getCoords(event)
-          , onCanvas = areCoordsOnCanvas(xy);
+          , onCanvas = areCoordsOnCanvas(xy)
 
       if (onCanvas) {
         //Emit the standard mousemove event
-        emitCanvasEventRaw(event, xy);
+        emitCanvasEventRaw(event, xy)
       }
 
 
       //Emit mouseover and mouseout
       if (onCanvas && !isIn) {
-        isIn = true;
-        emitCanvasEventRaw(event, xy, 'mouseover');
+        isIn = true
+        emitCanvasEventRaw(event, xy, 'mouseover')
       }
 
       if (!onCanvas && isIn) {
-        isIn = false;
-        emitCanvasEventRaw(event, xy, 'mouseout');
+        isIn = false
+        emitCanvasEventRaw(event, xy, 'mouseout')
       }
 
-    });
+    })
 
     //Listener for contextmenu. also trigers the click event
     eventSource.addEventListener('contextmenu', event => {
-      emitCanvasEventIfOnCanvas(event);
-      emitCanvasEventIfOnCanvas(event, 'click');
-    });
-  };
+      emitCanvasEventIfOnCanvas(event)
+      emitCanvasEventIfOnCanvas(event, 'click')
+    })
+  }
 
-  initListeners();
-  return emitter;
-};
+  initListeners()
+  return emitter
+}
+
+export default createCanvasEventEmitter

@@ -1,13 +1,7 @@
-let createCanvasEventEmitter = require('./lib/canvasEventEmitter.js')
-  , { radiansToDegrees
-    , degreesToRadians
-    , rotateContextAt
-    , convertEventCoords
-    } = require('./lib/canvas-utils.js');
-
-module.exports = { createCanvasEventEmitter
-                 , radiansToDegrees
-                 , degreesToRadians
-                 , rotateContextAt
-                 , convertEventCoords
-                 };
+import createCanvasEventEmitter from './lib/canvasEventEmitter'
+export { radiansToDegrees
+       , degreesToRadians
+       , rotateContextAt
+       , convertEventCoords
+       } from './lib/canvas-utils'
+export { createCanvasEventEmitter }

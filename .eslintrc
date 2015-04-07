@@ -30,6 +30,7 @@
     "no-comma-dangle": false,
     "no-var": true,
     "strict": "never",
+    "semi": [2, "never"]
   }
 }
 

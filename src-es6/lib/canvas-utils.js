@@ -8,12 +8,12 @@ let convertEventCoords = function convertEventCoords(e, canvas) {
   let rect = canvas.getBoundingClientRect()
     , x = e.pageX - rect.left - document.body.scrollLeft
     , y = e.pageY - rect.top - document.body.scrollTop
-    , computed = window.getComputedStyle(canvas);
+    , computed = window.getComputedStyle(canvas)
 
-  x *= canvas.width / parseInt(computed.width, 10);
-  y *= canvas.height / parseInt(computed.height, 10);
+  x *= canvas.width / parseInt(computed.width, 10)
+  y *= canvas.height / parseInt(computed.height, 10)
 
-  return { x, y };
+  return { x, y }
 },
 
 
@@ -26,10 +26,10 @@ let convertEventCoords = function convertEventCoords(e, canvas) {
  * @return {CanvasRenderingContext2D} return the context passed in (for chaining)
  */
 rotateContextAt = function rotateContextAt(ctx, x, y, r) {
-  ctx.translate(x, y);
-  ctx.rotate(r);
-  ctx.translate(-1 * x, -1 * y);
-  return ctx;
+  ctx.translate(x, y)
+  ctx.rotate(r)
+  ctx.translate(-1 * x, -1 * y)
+  return ctx
 },
 
 
@@ -42,7 +42,7 @@ rotateContextAt = function rotateContextAt(ctx, x, y, r) {
  * @return {Number} Angle in degree
  */
 radiansToDegrees = function radiansToDegrees(r) {
-  return r * 180 / Math.PI;
+  return r * 180 / Math.PI
 },
 
 /**
@@ -53,11 +53,11 @@ radiansToDegrees = function radiansToDegrees(r) {
  * @return {Number} Angle in radian
  */
 degreesToRadians = function degreesToRadians(d) {
-  return d * Math.PI / 180;
-};
+  return d * Math.PI / 180
+}
 
-module.exports = { convertEventCoords
-                 , rotateContextAt
-                 , radiansToDegrees
-                 , degreesToRadians
-                 };
+export { convertEventCoords
+       , rotateContextAt
+       , radiansToDegrees
+       , degreesToRadians
+       }
