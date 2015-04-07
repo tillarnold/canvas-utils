@@ -4,7 +4,7 @@
  *
  * @return {Object} the converted coordinate as object {x,y}
  */
-let convertEventCoords = function convertEventCoords(e, canvas) {
+export let convertEventCoords = function convertEventCoords(e, canvas) {
   let rect = canvas.getBoundingClientRect()
     , x = e.pageX - rect.left - document.body.scrollLeft
     , y = e.pageY - rect.top - document.body.scrollTop
@@ -55,9 +55,3 @@ radiansToDegrees = function radiansToDegrees(r) {
 degreesToRadians = function degreesToRadians(d) {
   return d * Math.PI / 180
 }
-
-export { convertEventCoords
-       , rotateContextAt
-       , radiansToDegrees
-       , degreesToRadians
-       }
