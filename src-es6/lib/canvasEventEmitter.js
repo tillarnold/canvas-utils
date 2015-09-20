@@ -12,12 +12,16 @@ const createCanvasEventEmitter = function createCanvasEventEmitter(target, event
         /**
          * Get the coordinates of an event relative to
          * the target element
+         * @param {MouseEvent} event - DOM event
+         * @return {Object} the converted coordinate as object {x,y}
          */
       , getCoords = event => convertEventCoords(event, target)
 
         /**
          * Calculate if the coordinates (as given by getCoords)
          * are on the canvas
+         * @param {Object} xy - object with the x and y coordinates
+         * @return {Boolean} true if on canvas else false
          */
       , areCoordsOnCanvas = function areCoordsOnCanvas(xy) {
           const { x, y } = xy
@@ -38,7 +42,9 @@ const createCanvasEventEmitter = function createCanvasEventEmitter(target, event
          * Wraps the DOM event into a CanvasEventEmitter event and emits it.
          * @param {Event} event - the DOM event
          * @param {Object} xy - the coordinate to emit
-         * @param {string} overrideType - optional defaults to event.type
+         * @param {string} type - optional defaults to event.type
+         *
+         * @return {undefined}
          */
       , emitCanvasEventRaw = function emitCanvasEventRaw(event, xy, type = event.type) {
 
@@ -56,7 +62,9 @@ const createCanvasEventEmitter = function createCanvasEventEmitter(target, event
 
         /**
          * Emits the given DOM Event if the coordinates are on the canvas
-         * @param {Event} event
+         * @param {Event} event - the DOM event
+         * @param {string} overrideType - optional defaults to event.type
+         * @return {undefined}
          */
       , emitCanvasEventIfOnCanvas = function emitCanvasEventIfOnCanvas(event, overrideType) {
           const xy = getCoords(event)
@@ -71,6 +79,7 @@ const createCanvasEventEmitter = function createCanvasEventEmitter(target, event
         /**
          * Attaches the DOM listeners
          * Should only be called once
+         * @return {undefined}
          */
       , initListeners = function initListeners() {
           //add the basic listeners to the dom

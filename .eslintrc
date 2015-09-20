@@ -16,7 +16,6 @@
     "arrowFunctions": true
   },
   "rules": {
-    "no-underscore-dangle": false,
     "quotes": [2, "single", "avoid-escape"],
     "valid-jsdoc":2,
     "no-else-return":2,
@@ -27,9 +26,8 @@
     "func-style": [2, "expression"],
     "consistent-this": [2, "that"],
     "no-lonely-if":2,
-    "no-comma-dangle": false,
-    "no-var": true,
-    "strict": "never",
+    "no-var": 2,
+    "strict": [2, "never"],
     "semi": [2, "never"]
   }
 }
