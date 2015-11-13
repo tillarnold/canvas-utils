@@ -38,7 +38,7 @@ function imageDataHelper(imageData) {
   const {width, height} = imageData
       , array = imageData.data
 
-  function get(x, y, defaultValue = undefined)  {
+  function get(x, y)  {
     const first = (y*width+x)*4
         , r = array[first] 
         , g = array[first+1]
@@ -46,7 +46,7 @@ function imageDataHelper(imageData) {
     		, a = array[first+3]
 
     //we want != here (and NOT !==) because undefined == null
-    return [r!=null?r:defaultValue,g!=null?g:defaultValue,b!=null?b:defaultValue,a!=null?a:defaultValue,]
+    return [r, g, b, a]
   }
 
   function set(x, y, [r,g,b,a=255]) {

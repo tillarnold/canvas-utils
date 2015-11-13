@@ -65,12 +65,21 @@ test('image data functions', t => {
                                               }
               }
      , CANVAS = { getContext: () => CTX } 
-  t.plan(9)
+  t.plan(16)
   
   global.document.createElement = () => CANVAS
   
   const helper = fromImage(IMAGE)
+  t.equals(helper.getWidth(), WIDTH)
+  t.equals(helper.getHeight(), HEIGHT)
+  t.equals(helper.getImageData(), IMAGEDATA)
 
+  helper.set(7,32,[10,20,30])
+  t.deepEqual(helper.get(7,32),[10,20,30,255])
+
+  t.equals(helper.getImageData().data[(32*WIDTH+7)*4], 10 )
+  t.equals(helper.getImageData().data[(32*WIDTH+7)*4+1], 20 )
+  t.equals(helper.getImageData().data[(32*WIDTH+7)*4+2], 30 )
 })
 
 require('./canvasEventEmitterTest.js')
