@@ -23,7 +23,6 @@
     "no-self-compare":2,
     "radix":2,
     "wrap-iife":2,
-    "func-style": [2, "expression"],
     "consistent-this": [2, "that"],
     "no-lonely-if":2,
     "no-var": 2,
