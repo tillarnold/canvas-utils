@@ -93,6 +93,7 @@ cee.on('click',function(e){
 ```
 
 ## Release History
+* 2018-02-08   v0.7.0   Add imageDataHelper.
 * 2015-03-07   v0.6.0   Is now written in ES6.
 * 2014-11-02   v0.5.0   Add `radiansToDegrees` and `degreesToRadians`.
 * 2014-10-13   v0.4.0   Add `mouseover` and `mouseout` events.
