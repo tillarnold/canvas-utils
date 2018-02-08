@@ -4,17 +4,6 @@
     "browser": true,
     "node": true
   },
-  "ecmaFeatures": {
-    "forOf": true,
-    "generators": true,
-    "templateStrings": true,
-    "objectLiteralComputedProperties": true,
-    "objectLiteralShorthandMethods": true,
-    "objectLiteralShorthandProperties": true,
-    "defaultParams": true,
-    "blockBindings": true,
-    "arrowFunctions": true
-  },
   "rules": {
     "quotes": [2, "single", "avoid-escape"],
     "valid-jsdoc":2,
