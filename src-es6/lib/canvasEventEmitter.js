@@ -83,7 +83,7 @@ const createCanvasEventEmitter = function createCanvasEventEmitter(target, event
          */
       , initListeners = function initListeners() {
           //add the basic listeners to the dom
-          ['click', 'mousedown', 'mouseup'].forEach( eventType => {
+          ['mousedown', 'mouseup'].forEach( eventType => {
             eventSource.addEventListener(eventType, emitCanvasEventIfOnCanvas)
           })
 
@@ -105,11 +105,13 @@ const createCanvasEventEmitter = function createCanvasEventEmitter(target, event
             if (onCanvas && !isIn) {
               isIn = true
               emitCanvasEventRaw(event, xy, 'mouseover')
+              emitCanvasEventRaw(event, xy, 'mousein')
             }
 
             if (!onCanvas && isIn) {
               isIn = false
               emitCanvasEventRaw(event, xy, 'mouseout')
+              emitCanvasEventRaw(event, xy, 'mouseleave')
             }
 
           })
@@ -117,7 +119,15 @@ const createCanvasEventEmitter = function createCanvasEventEmitter(target, event
           //Listener for contextmenu. also trigers the click event
           eventSource.addEventListener('contextmenu', event => {
             emitCanvasEventIfOnCanvas(event)
+            emitCanvasEventIfOnCanvas(event, 'rightclick')
             emitCanvasEventIfOnCanvas(event, 'click')
+          })
+          
+          eventSource.addEventListener('click', event => {
+            emitCanvasEventIfOnCanvas(event)
+            if(event.button == 0) {
+              emitCanvasEventIfOnCanvas(event, 'leftclick')
+            }
           })
         }
 

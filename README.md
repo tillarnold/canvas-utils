@@ -71,7 +71,21 @@ var createCanvasEventEmitter = require('canvas-utils').createCanvasEventEmitter;
 ## Events
 
 A `CanvasEventEmitter` is a standart node [EventEmitter](nodejs.org/api/events.html#events_class_events_eventemitter).
-It emits the following events: `click`, `mousedown`, `mouseup`, `mousemove`, `mouseover`, `mouseout`, `contextmenu`
+It emits the following events:
+
+
+| Events with synonyms        |  
+|-----------------------------|
+| `mouseup`                   |
+| `mousedown`                 |
+| `mousemove`                 |
+| `mouseover`, `mousein`      |
+| `mouseleave`, `mouseout`    |
+| `click`                     |
+| `leftclick`                 |
+| `contextmenu`, `rightclick` |
+ 
+
 
 The event object you get for all of these looks like this:
 
