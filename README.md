@@ -106,6 +106,7 @@ cee.on('click',function(e){
 ```
 
 ## Release History
+* 2018-02-16   v0.8.0   Use `jvent` and add synonyms for some events.
 * 2018-02-08   v0.7.0   Add imageDataHelper.
 * 2015-03-07   v0.6.0   Is now written in ES6.
 * 2014-11-02   v0.5.0   Add `radiansToDegrees` and `degreesToRadians`.
