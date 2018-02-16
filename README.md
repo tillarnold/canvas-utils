@@ -70,8 +70,7 @@ var createCanvasEventEmitter = require('canvas-utils').createCanvasEventEmitter;
 
 ## Events
 
-A `CanvasEventEmitter` is a standart node [EventEmitter](nodejs.org/api/events.html#events_class_events_eventemitter).
-It emits the following events:
+A `CanvasEventEmitter` is a [`jvent` EventEmitter](https://github.com/pazguille/jvent). `jvent` is a small EventEmitter that behaves pretty much like a standard node EventEmitter. It emits the following events:
 
 
 | Events with synonyms        |  

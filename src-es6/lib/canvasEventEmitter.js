@@ -1,4 +1,4 @@
-import { EventEmitter } from 'events'
+import EventEmitter from 'jvent'
 import { convertEventCoords } from './canvas-utils.js'
 
 /**

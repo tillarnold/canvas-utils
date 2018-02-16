@@ -32,5 +32,8 @@
     "istanbul": "^0.4.0",
     "serve": "^6.4.9",
     "tape": "^4.2.2"
+  },
+  "dependencies": {
+    "jvent": "^1.0.2"
   }
 }
