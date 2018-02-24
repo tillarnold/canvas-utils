@@ -10,7 +10,8 @@
     "coverage": "rm -rf coverage && npm run istanbul && istanbul report html && serve coverage",
     "istanbul": "npm run build && istanbul cover es5-generated/test/test.js",
     "lint": "eslint src-es6/*",
-    "build": "rm -rf es5-generated && mkdir es5-generated && babel src-es6 --out-dir es5-generated"
+    "build": "rm -rf es5-generated && mkdir es5-generated && babel src-es6 --out-dir es5-generated",
+    "check": "npm run lint && npm run test"
   },
   "repository": {
     "type": "git",
@@ -25,13 +26,13 @@
   "devDependencies": {
     "babel-cli": "^6.1.18",
     "babel-core": "^6.1.20",
-    "babel-eslint": "^8.2.1",
+    "babel-eslint": "^8.2.2",
     "babel-preset-env": "^1.6.1",
     "coveralls": "~3.0.0",
-    "eslint": "^4.17.0",
+    "eslint": "^4.18.1",
     "istanbul": "^0.4.0",
-    "serve": "^6.4.9",
-    "tape": "^4.2.2"
+    "serve": "^6.4.11",
+    "tape": "^4.9.0"
   },
   "dependencies": {
     "jvent": "^1.0.2"
