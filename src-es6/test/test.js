@@ -13,7 +13,10 @@ const test = require('tape')
 global.document = {
   body: { scrollLeft: 0
         , scrollTop: 0
-        }
+        },
+  documentElement: { scrollLeft: 0
+                   , scrollTop: 0
+                   }
 }
 
 global.window = {
