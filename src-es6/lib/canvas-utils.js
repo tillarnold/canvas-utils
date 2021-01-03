@@ -6,8 +6,8 @@
  */
 export function convertEventCoords(e, canvas) {
   let rect = canvas.getBoundingClientRect()
-    , x = e.pageX - rect.left - document.body.scrollLeft
-    , y = e.pageY - rect.top - document.body.scrollTop
+    , x = e.pageX - rect.left - document.body.scrollLeft - document.documentElement.scrollLeft
+    , y = e.pageY - rect.top - document.body.scrollTop - document.documentElement.scrollTop
     , computed = window.getComputedStyle(canvas)
   x *= canvas.width / parseInt(computed.width, 10)
   y *= canvas.height / parseInt(computed.height, 10)
